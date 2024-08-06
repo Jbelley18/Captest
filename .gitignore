@@ -1,0 +1,12 @@
+# Ignore Visual Studio files
+.vs/
+
+# Ignore build output directories
+bin/
+obj/
+
+# Ignore NuGet packages
+packages/
+
+# Ignore Properties folder (usually contains generated files)
+Properties/
