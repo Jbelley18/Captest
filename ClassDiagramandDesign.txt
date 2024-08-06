@@ -1,0 +1,56 @@
++----------------+     +-------------------+     +----------------+
+|    Customer    |<----+    Appointment    +---->|      User      |
++----------------+     +-------------------+     +----------------+
+| - customerId   |     | - appointmentId   |     | - userId       |
+| - customerName |     | - customerId      |     | - userName     |
+| - addressId    |     | - userId          |     | - password     |
+| - email        |     | - title           |     | - active       |
+| - phone        |     | - description     |     | - createDate   |
+| - active       |     | - location        |     | - createdBy    |
+| - createDate   |     | - contact         |     | - lastUpdate   |
+| - createdBy    |     | - type            |     | - lastUpdateBy |
+| - lastUpdate   |     | - url             |     +----------------+
+| - lastUpdateBy |     | - start           |     | + addUser()    |
++----------------+     | - end             |     | + modifyUser() |
+| + addCustomer()|     | - status          |     | + deleteUser() |
+| + modifyCustomer()|  | - createDate      |     | + getUsers()   |
+| + deleteCustomer()|  | - createdBy       |     | + authenticate(username, password)|
+| + getCustomerById(id)| | - lastUpdate      |     | + updateLastLogin(userId)|
+| + searchCustomers(criteria)| | - lastUpdateBy    |     +----------------+
++----------------+     | + addAppointment()|
+                       | + modifyAppointment()|
+                       | + deleteAppointment()|
+                       | + getAppointmentsByUser(userId)|
+                       | + checkConflict(start, end)|
+                       | + updateStatus(appointmentId, status)|
+                       +-------------------+
+
++------------------+     +----------------+
+| DatabaseConnection |   |   userContext   |
++------------------+     +----------------+
+| - connectionStr  |     | - userId       |
+| - connection     |     | - username     |
++------------------+     +----------------+
+| + openConnection()|    | + setUserId()  |
+| + closeConnection()|   | + setUsername()|
+| + executeQuery() |     | + getUserId()  |
++------------------+     | + getUsername()|
+                         +----------------+
+
++-------------+     +-------------------+     +------------------+
+| Login Page  | --> | Main Screen       | --> | Appointment Screen |
++-------------+     +-------------------+     +------------------+
+      |               |                           |
+      |               |                           v
+      |               |              +---------------------------+
+      |               |              | Add/Modify Appointment Screen |
+      |               |              +---------------------------+
+      |               v
+      |        +------------------+
+      |        | Customer Screen  |
+      |        +------------------+
+      |               |
+      v               v
++------------------+  +---------------------------+
+| Database Connection | | Add/Modify Customer Screen |
++------------------+  +---------------------------+
